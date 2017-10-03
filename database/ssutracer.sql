@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 02, 2017 at 11:32 AM
+-- Host: localhost
+-- Generation Time: Oct 03, 2017 at 10:45 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,45 @@ SET time_zone = "+00:00";
 --
 -- Database: `ssutracer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_user`
+--
+
+CREATE TABLE `admin_user` (
+  `userid` int(100) NOT NULL,
+  `adminuser` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_user`
+--
+
+INSERT INTO `admin_user` (`userid`, `adminuser`, `password`) VALUES
+(1, 'ssucasadmin', '015b67f79411d74b9de2a689a04517ff');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answer_tbl`
+--
+
+CREATE TABLE `answer_tbl` (
+  `answerID` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `answerText` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answer_tbl`
+--
+
+INSERT INTO `answer_tbl` (`answerID`, `question_id`, `answerText`) VALUES
+(1, 1, 'yes'),
+(2, 1, 'no');
 
 -- --------------------------------------------------------
 
@@ -90,7 +129,9 @@ INSERT INTO `question_tbl` (`questionID`, `questionText`) VALUES
 (1, 'Are you currently employed?'),
 (2, 'Employment Status?'),
 (3, 'What is your initial gross monthly income in your first job after college?'),
-(4, 'How did you land your first job?');
+(4, 'How did you land your first job?'),
+(5, 'How long did it take you to land your first job?'),
+(6, 'Job level position?');
 
 -- --------------------------------------------------------
 
@@ -100,14 +141,34 @@ INSERT INTO `question_tbl` (`questionID`, `questionText`) VALUES
 
 CREATE TABLE `response_tbl` (
   `responseID` int(100) NOT NULL,
-  `question_ID` int(100) NOT NULL,
+  `answer_ID` int(100) NOT NULL,
   `respondent_id` int(100) NOT NULL,
   `responseToQuestion` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `response_tbl`
+--
+
+INSERT INTO `response_tbl` (`responseID`, `answer_ID`, `respondent_id`, `responseToQuestion`) VALUES
+(1, 2, 3, 'yes');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_user`
+--
+ALTER TABLE `admin_user`
+  ADD PRIMARY KEY (`userid`);
+
+--
+-- Indexes for table `answer_tbl`
+--
+ALTER TABLE `answer_tbl`
+  ADD PRIMARY KEY (`answerID`),
+  ADD KEY `question_id` (`question_id`);
 
 --
 -- Indexes for table `batch_tbl`
@@ -134,13 +195,24 @@ ALTER TABLE `question_tbl`
 --
 ALTER TABLE `response_tbl`
   ADD PRIMARY KEY (`responseID`),
-  ADD KEY `question_ID` (`question_ID`),
-  ADD KEY `respondent_id` (`respondent_id`);
+  ADD KEY `question_ID` (`answer_ID`),
+  ADD KEY `respondent_id` (`respondent_id`),
+  ADD KEY `answer_ID` (`answer_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `admin_user`
+--
+ALTER TABLE `admin_user`
+  MODIFY `userid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `answer_tbl`
+--
+ALTER TABLE `answer_tbl`
+  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `batch_tbl`
 --
@@ -155,15 +227,21 @@ ALTER TABLE `personalinfo_tbl`
 -- AUTO_INCREMENT for table `question_tbl`
 --
 ALTER TABLE `question_tbl`
-  MODIFY `questionID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `questionID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `response_tbl`
 --
 ALTER TABLE `response_tbl`
-  MODIFY `responseID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `responseID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `answer_tbl`
+--
+ALTER TABLE `answer_tbl`
+  ADD CONSTRAINT `answer_tbl_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question_tbl` (`questionID`);
 
 --
 -- Constraints for table `personalinfo_tbl`
@@ -175,7 +253,7 @@ ALTER TABLE `personalinfo_tbl`
 -- Constraints for table `response_tbl`
 --
 ALTER TABLE `response_tbl`
-  ADD CONSTRAINT `response_tbl_ibfk_1` FOREIGN KEY (`question_ID`) REFERENCES `question_tbl` (`questionID`),
+  ADD CONSTRAINT `response_tbl_ibfk_1` FOREIGN KEY (`answer_ID`) REFERENCES `answer_tbl` (`answerID`),
   ADD CONSTRAINT `response_tbl_ibfk_2` FOREIGN KEY (`respondent_id`) REFERENCES `personalinfo_tbl` (`respondentID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
