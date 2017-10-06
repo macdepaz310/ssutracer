@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2017 at 10:45 AM
+-- Generation Time: Oct 05, 2017 at 07:17 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -48,6 +48,7 @@ INSERT INTO `admin_user` (`userid`, `adminuser`, `password`) VALUES
 CREATE TABLE `answer_tbl` (
   `answerID` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
+  `respondent_ID` int(100) NOT NULL,
   `answerText` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -55,9 +56,24 @@ CREATE TABLE `answer_tbl` (
 -- Dumping data for table `answer_tbl`
 --
 
-INSERT INTO `answer_tbl` (`answerID`, `question_id`, `answerText`) VALUES
-(1, 1, 'yes'),
-(2, 1, 'no');
+INSERT INTO `answer_tbl` (`answerID`, `question_id`, `respondent_ID`, `answerText`) VALUES
+(3, 1, 4, 'Yes'),
+(4, 1, 4, 'yes'),
+(5, 1, 4, 'no'),
+(6, 1, 4, 'yes'),
+(7, 1, 4, 'no'),
+(8, 1, 3, 'yes'),
+(9, 1, 4, 'yes'),
+(10, 1, 4, 'yes'),
+(11, 1, 4, 'no'),
+(12, 1, 4, 'yes'),
+(13, 2, 4, 'Self-Employed'),
+(14, 2, 4, '8k-15k'),
+(15, 2, 4, '15k-25k'),
+(16, 3, 4, '8k-15k'),
+(17, 4, 4, 'familyBusiness'),
+(18, 5, 4, '1-2years'),
+(19, 6, 4, 'self-employed');
 
 -- --------------------------------------------------------
 
@@ -108,7 +124,8 @@ CREATE TABLE `personalinfo_tbl` (
 --
 
 INSERT INTO `personalinfo_tbl` (`respondentID`, `yearBatch`, `first_name`, `middle_initial`, `last_name`, `gender`, `birthdate`, `civil_status`, `course`, `address`, `contact_number`, `email_address`, `password`) VALUES
-(3, 2017, 'Michael Jake', 'G', 'Bacuetes', 'Male', '1999-12-25', 'single', 'BSIS', 'Catbalogan Samar', '123456', 'mjbacuetes@gmail.com', '$2y$10$lg.aixUXSP9ACJ.F6pGkm.htzDWFWp4AhCGVyPyZl7ay7xQV6oJxy');
+(3, 2017, 'Michael Jake', 'G', 'Bacuetes', 'Male', '1999-12-25', 'single', 'BSIS', 'Catbalogan Samar', '123456', 'mjbacuetes@gmail.com', '$2y$10$lg.aixUXSP9ACJ.F6pGkm.htzDWFWp4AhCGVyPyZl7ay7xQV6oJxy'),
+(4, 2017, 'vincent', 'D', 'mendez', 'Male', '0000-00-00', 'single', 'BSIS', 'Catbalogan', '1231', 'mendez@gmail.com', '$2y$10$TAKRPl11kcKomLX.5b1FVeZfDaJYW2.L/p1QgAKzPI/Shkx6VnoQa');
 
 -- --------------------------------------------------------
 
@@ -147,13 +164,6 @@ CREATE TABLE `response_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `response_tbl`
---
-
-INSERT INTO `response_tbl` (`responseID`, `answer_ID`, `respondent_id`, `responseToQuestion`) VALUES
-(1, 2, 3, 'yes');
-
---
 -- Indexes for dumped tables
 --
 
@@ -168,7 +178,8 @@ ALTER TABLE `admin_user`
 --
 ALTER TABLE `answer_tbl`
   ADD PRIMARY KEY (`answerID`),
-  ADD KEY `question_id` (`question_id`);
+  ADD KEY `question_id` (`question_id`),
+  ADD KEY `respondednt_ID` (`respondent_ID`);
 
 --
 -- Indexes for table `batch_tbl`
@@ -212,7 +223,7 @@ ALTER TABLE `admin_user`
 -- AUTO_INCREMENT for table `answer_tbl`
 --
 ALTER TABLE `answer_tbl`
-  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `batch_tbl`
 --
@@ -222,7 +233,7 @@ ALTER TABLE `batch_tbl`
 -- AUTO_INCREMENT for table `personalinfo_tbl`
 --
 ALTER TABLE `personalinfo_tbl`
-  MODIFY `respondentID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `respondentID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `question_tbl`
 --
@@ -232,7 +243,7 @@ ALTER TABLE `question_tbl`
 -- AUTO_INCREMENT for table `response_tbl`
 --
 ALTER TABLE `response_tbl`
-  MODIFY `responseID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `responseID` int(100) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -241,20 +252,14 @@ ALTER TABLE `response_tbl`
 -- Constraints for table `answer_tbl`
 --
 ALTER TABLE `answer_tbl`
-  ADD CONSTRAINT `answer_tbl_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question_tbl` (`questionID`);
+  ADD CONSTRAINT `answer_tbl_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question_tbl` (`questionID`),
+  ADD CONSTRAINT `answer_tbl_ibfk_2` FOREIGN KEY (`respondent_ID`) REFERENCES `personalinfo_tbl` (`respondentID`);
 
 --
 -- Constraints for table `personalinfo_tbl`
 --
 ALTER TABLE `personalinfo_tbl`
   ADD CONSTRAINT `personalinfo_tbl_ibfk_1` FOREIGN KEY (`yearBatch`) REFERENCES `batch_tbl` (`batchID`);
-
---
--- Constraints for table `response_tbl`
---
-ALTER TABLE `response_tbl`
-  ADD CONSTRAINT `response_tbl_ibfk_1` FOREIGN KEY (`answer_ID`) REFERENCES `answer_tbl` (`answerID`),
-  ADD CONSTRAINT `response_tbl_ibfk_2` FOREIGN KEY (`respondent_id`) REFERENCES `personalinfo_tbl` (`respondentID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

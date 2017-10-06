@@ -1,3 +1,31 @@
+<?php
+  session_start();
+
+  if( isset($_SESSION['currentUser']) ){
+    header('Location: indexhomepage.php');
+  }
+
+  require 'DBconnect/database.php';
+
+  if(!empty($_POST['email']) && !empty($_POST['pwd'])):
+
+    $records = $conn->prepare('SELECT respondentID, email_address, password FROM personalinfo_tbl WHERE email_address = :email');
+    $records->bindParam(':email', $_POST['email']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $message = '';
+
+    if(count($results) > 0 && password_verify($_POST['pwd'], $results['password']) ){
+      $_SESSION['currentUser'] = $results['email_address'];
+      $message = 'Succesfuly logged in';
+    header('Refresh: 1; url=indexhomepage.php');
+  } else {
+    $message = 'Incorrect Email OR Password';
+  }
+
+endif;
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +94,15 @@
                                       <h4 class="modal-title">Enter your Account</h4>
                                 </div>
                                 <div class="modal-body">
-
+                                  <?php if(!empty($message)): ?>
+                                    <p><?= $message ?></p>
+                                  <?php endif; ?>
+                                  <!-- FORM FOR USER LOG IN -->
+                                  <form class="" action="index.php" method="post">
+                                    <input type="email" name="email" placeholder="Email@example.com" autofocus required>
+                                    <input type="password" name="pwd" placeholder="Password" required>
+                                    <input type="submit" name="" value="Log In">
+                                  </form>
                                 </div>
                                 <div class="modal-footer">
                                       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -83,7 +119,52 @@
                                   <h4 class="modal-title">Registration or Sign Up</h4>
                             </div>
                             <div class="modal-body">
+                              <?php if(!empty($message)): ?>
+                                <p><?= $message ?></p>
+                              <?php endif; ?>
+                              <!-- FORM FOR USER REGISTRATION -->
+                              <form class="" action="register.php" method="post">
+                                <ul>
+                                <li>
+                                <select class="" name="batch" required>
+                                  <option disabled selected value="">YearBatch</option>
+                                  <option value="2013">Batch 2013</option>
+                                  <option value="2014">Batch 2014</option>
+                                  <option value="2015">Batch 2015</option>
+                                  <option value="2016">Batch 2016</option>
+                                  <option value="2017">Batch 2017</option>
+                                </select>
+                                </li>
+                                <li>
+                                <select class="" name="course" required>
+                                  <option disabled selected value="">Course</option>
+                                  <option value="BSIT">BS in Information Technology</option>
+                                  <option value="BSIS">BS in Information System</option>
+                                </select>
+                              </li>
 
+                                <li><input type="text" name="first_n" placeholder="First Name" required></li>
+                                <li><input type="text" name="middle_i" placeholder="Middle Initial" maxlength="1" required></li>
+                                <li><input type="text" name="last_n" placeholder="Last Name" required></li>
+                                <li><input type="radio" name="gender" value="Male" required>Male</li>
+                                <li><input type="radio" name="gender" value="Female" required>Female</li>
+                                <li><input type="date" name="bd" value="" placeholder="Birth Date" min="1700-01-01" max="2010-12-31/" required></li>
+                                <li><select class="" name="civil" required>
+                                    <option disabled selected value="">Civil Status</option>
+                                    <option value="single">Single</option>
+                                    <option value="married">Married</option>
+                                    <option value="separated">Separated</option>
+                                    <option value="widowed">Widowed</option>
+                                </select></li>
+                                <li><input type="text" name="address" placeholder="Address" required></li>
+                                <li><input type="number" name="contact" placeholder="Contact Number" required></li>
+                                <li><input type="email" name="email" placeholder="Email address" required></li>
+                                <li><input type="password" name="pwd" placeholder="Password" required></li>
+                                <li><input type="password" name="repwd" placeholder="Verify Password" required></li>
+
+                                <li><input type="submit" name="" value="submit"></li>
+                              </ul>
+                              </form>
                             </div>
                             <div class="modal-footer">
                                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
@@ -110,7 +191,7 @@
 <!--center information-->
 <div class="col-sm-12 well">
           <a href="#">
-              <img src="pic/shake.png" alt="" class="img-responsive center" width="500" /></a>
+              <img src="pic/SHAKE.png" alt="" class="img-responsive center" width="500" /></a>
                       <p style="text-align:center;font-family:verdana;">Hands Shakes</p>
 </div>
 <div class="container-fluid">

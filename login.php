@@ -1,4 +1,10 @@
 <?php
+  session_start();
+
+  if( isset($_SESSION['currentUser']) ){
+    header('Location: index.php');
+  }
+
   require 'DBconnect/database.php';
 
   if(!empty($_POST['email']) && !empty($_POST['pwd'])):
@@ -11,9 +17,9 @@
     $message = '';
 
     if(count($results) > 0 && password_verify($_POST['pwd'], $results['password']) ){
-
-    // $_SESSION['respondentID'] =
-    header('location: index.html');
+      $_SESSION['currentUser'] = $results['email_address'];
+      $message = 'Succesfuly logged in';
+    header('Refresh: 1; url=index.php');
   } else {
     $message = 'Sorry';
   }
@@ -34,7 +40,7 @@ endif;
       <p><?= $message ?></p>
     <?php endif; ?>
     <form class="" action="login.php" method="post">
-      <input type="email" name="email" placeholder="Email@example.com" required>
+      <input type="email" name="email" placeholder="Email@example.com" autofocus required>
       <input type="password" name="pwd" placeholder="password" required>
       <input type="submit" name="" value="Log In">
     </form>

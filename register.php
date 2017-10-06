@@ -1,5 +1,9 @@
 <?php
+session_start();
 
+if( isset($_SESSION['currentUser']) ){
+  header('Location: indexhomepage.php');
+}
   require 'DBconnect/database.php';
 
   $message = '';
@@ -35,7 +39,7 @@
       endif;
     endif;
  ?>
-
+<!--
 <!DOCTYPE html>
 <html>
   <head>
@@ -43,14 +47,14 @@
     <title>Employment Tracer</title>
   </head>
   <body>
-    <a href="login.html">login</a>
+    <a href="login.php">login</a>
 
 <h1>FROMS</h1>
 <h5><?php if(!empty($message)): ?></h5>
   <p><?= $message ?></p>
 <?php endif; ?>
-  <ul>
   <form class="" action="register.php" method="post">
+    <ul>
     <li>
     <select class="" name="batch" required>
       <option disabled selected value="">YearBatch</option>
@@ -89,7 +93,7 @@
     <li><input type="password" name="repwd" placeholder="Verify Password" required></li>
 
     <li><input type="submit" name="" value="submit"></li>
+  </ul>
   </form>
-</ul>
   </body>
-</html>
+</html> -->
