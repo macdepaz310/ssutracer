@@ -91,8 +91,10 @@ if(isset($_POST['submit'])):
   $stmt->bindParam(':QID', $QID);
   $stmt->bindParam(':rid', $rid);
   $stmt->bindParam(':answerText', $_POST['ans']);
-  if($stmt->execute() ):
+  if($stmt->execute() && $_POST['ans']=='yes' ):
     header('Refresh:0.2; url= ../survey/question2.php');
+  elseif($stmt->execute() && $_POST['ans']=='no' ):
+      header('Refresh:0.2; url= ../survey/endsurvey.php');
   else:
     echo "sorry";
   endif;

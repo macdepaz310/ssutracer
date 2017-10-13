@@ -33,13 +33,14 @@ if( isset($_SESSION['currentUser']) ){
 
     if($stmt->execute() ):
       $message = 'Successfully Created New User';
+      header('Refresh: 1; url=index.php');
     else:
         $message = 'sorry';
 
       endif;
     endif;
  ?>
-<!--
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -47,13 +48,13 @@ if( isset($_SESSION['currentUser']) ){
     <title>Employment Tracer</title>
   </head>
   <body>
-    <a href="login.php">login</a>
+    <a href="index.php">HOME</a>
 
-<h1>FROMS</h1>
+    <!-- <h1>FROMS</h1> -->
 <h5><?php if(!empty($message)): ?></h5>
   <p><?= $message ?></p>
 <?php endif; ?>
-  <form class="" action="register.php" method="post">
+  <!-- <form class="" action="register.php" method="post">
     <ul>
     <li>
     <select class="" name="batch" required>
@@ -94,6 +95,6 @@ if( isset($_SESSION['currentUser']) ){
 
     <li><input type="submit" name="" value="submit"></li>
   </ul>
-  </form>
+  </form> -->
   </body>
-</html> -->
+</html>
