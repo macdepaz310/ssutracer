@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/charts/api/BSISdata/surveyQ2Data.php",
+    url: "http://192.168.1.254/ssutracer/charts/api/BSITdata/surveyQ7Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -12,36 +12,31 @@ $(document).ready(function(){
         count.push(data[i].count);
       }
       var chartdata = {
-        labels : ["Regular", "Self-Employed", "Temporary", "Casual", "Contractual"],
+        labels : ["No", "Yes"],
         datasets : [
           {
-            label : 'RESULT',
+            label : 'Result',
             backgroundColor: [
-              'rgba(150, 0, 102, 0.70)',
-              'rgba(200, 0, 10, 0.70)',
-              'rgba(32, 0, 12, 0.70)',
-              'rgba(21, 0, 102, 0.70)',
-              'rgba(51, 51, 204, 0.70)'],
-            borderColor:'rgba(5, 5, 20), 0.75)',
-            hoverBackgroundColor: [
-              'rgba(100, 0, 102, 1)',
-              'rgba(200, 0, 102, 1)',
-              'rgba(32, 0, 102, 1)',
-              'rgba(21, 0, 102, 1)',
-              'rgba(51, 51, 204, 1)',
+              'rgba(92, 92, 61, 0.70)',
+              'rgba(115, 38, 38, 0.70)'
             ],
-            hoverBorderColor: 'rgba(200, 200, 200, 1)',
+            borderColor:'rgba(0, 51, 51, 0.5)',
+            hoverBackgroundColor: [
+              'rgba(92, 92, 61, 1)',
+              'rgba(115, 38, 38, 1)'
+            ],
+            hoverBorderColor: 'rgba(0, 51, 51, 1)',
             data: count
           }
         ]
       };
 
-      var ctx = $("#ISchartQuestion2");
+      var ctx = $("#ITchartQuestion7");
       var options = {
         title: {
           display: true,
           position: "top",
-          text: "Employement Status of IS Graduate",
+          text: "BSIT ",
           fontSize: 20,
           fontColor: "#222"
         },
@@ -57,22 +52,12 @@ $(document).ready(function(){
         legend: {
           display: true,
           position: "top"
-        },
-        scales: {
-        yAxes: [{
-            display: true,
-            ticks: {
-                suggestedMin: 0,
-                beginAtZero: true
-            }
-        }]
         }
-
       };
 
 
       var barGraph = new Chart(ctx, {
-        type: 'bar',
+        type: 'doughnut',
         data: chartdata,
         showDatapoints: true,
         options : options

@@ -30,7 +30,7 @@ $(document).ready(function(){
         ]
       };
 
-      var ctx = $("#chartQuestion1");
+      var ctx = $("#ISchartQuestion1");
       var options = {
         title: {
           display: true,

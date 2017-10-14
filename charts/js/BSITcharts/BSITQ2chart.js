@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/charts/api/BSISdata/surveyQ2Data.php",
+    url: "http://192.168.1.254/ssutracer/charts/api/BSITdata/surveyQ2Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -36,12 +36,12 @@ $(document).ready(function(){
         ]
       };
 
-      var ctx = $("#ISchartQuestion2");
+      var ctx = $("#ITchartQuestion2");
       var options = {
         title: {
           display: true,
           position: "top",
-          text: "Employement Status of IS Graduate",
+          text: "Employement Status of IT Graduates",
           fontSize: 20,
           fontColor: "#222"
         },

@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/charts/api/BSISdata/surveyQ2Data.php",
+    url: "http://192.168.1.254/ssutracer/charts/api/BSISdata/surveyQ3Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -12,12 +12,12 @@ $(document).ready(function(){
         count.push(data[i].count);
       }
       var chartdata = {
-        labels : ["Regular", "Self-Employed", "Temporary", "Casual", "Contractual"],
+        labels : ["15,000-25,000", "8,000-15,000", "8,000 below", "25,000 above"],
         datasets : [
           {
-            label : 'RESULT',
+            label : 'Result',
             backgroundColor: [
-              'rgba(150, 0, 102, 0.70)',
+              'rgba(100, 0, 102, 0.70)',
               'rgba(200, 0, 10, 0.70)',
               'rgba(32, 0, 12, 0.70)',
               'rgba(21, 0, 102, 0.70)',
@@ -36,12 +36,12 @@ $(document).ready(function(){
         ]
       };
 
-      var ctx = $("#ISchartQuestion2");
+      var ctx = $("#ISchartQuestion3");
       var options = {
         title: {
           display: true,
           position: "top",
-          text: "Employement Status of IS Graduate",
+          text: "BSIS Initial Monthly Growth Income",
           fontSize: 20,
           fontColor: "#222"
         },
@@ -49,7 +49,7 @@ $(document).ready(function(){
           enabled: true
         },
         pieceLabel:{
-          mode: 'percentage',
+          mode: 'value',
           fontSize: 18,
           fontColor: "#111"
         },
@@ -59,20 +59,19 @@ $(document).ready(function(){
           position: "top"
         },
         scales: {
-        yAxes: [{
+        xAxes: [{
             display: true,
             ticks: {
                 suggestedMin: 0,
                 beginAtZero: true
             }
         }]
-        }
-
+      }
       };
 
 
       var barGraph = new Chart(ctx, {
-        type: 'bar',
+        type: 'horizontalBar',
         data: chartdata,
         showDatapoints: true,
         options : options

@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/charts/api/BSISdata/surveyQ2Data.php",
+    url: "http://192.168.1.254/ssutracer/charts/api/BSISdata/surveyQ4Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -12,23 +12,32 @@ $(document).ready(function(){
         count.push(data[i].count);
       }
       var chartdata = {
-        labels : ["Regular", "Self-Employed", "Temporary", "Casual", "Contractual"],
+        labels : [
+        "Arrange By the School Or Job Placement Offer", "Family Business",
+        "Job Fair Or Public Employment Service Office",
+        "Recommended By Someone",
+        "Response To Advertisement",
+        "Walk In Applicant"
+        ],
         datasets : [
           {
             label : 'RESULT',
             backgroundColor: [
-              'rgba(150, 0, 102, 0.70)',
+              'rgba(100, 0, 102, 0.70)',
+              'rgba(60, 23, 10, 0.70)',
               'rgba(200, 0, 10, 0.70)',
               'rgba(32, 0, 12, 0.70)',
               'rgba(21, 0, 102, 0.70)',
-              'rgba(51, 51, 204, 0.70)'],
+              'rgba(51, 51, 204, 0.70)'
+            ],
             borderColor:'rgba(5, 5, 20), 0.75)',
             hoverBackgroundColor: [
               'rgba(100, 0, 102, 1)',
-              'rgba(200, 0, 102, 1)',
-              'rgba(32, 0, 102, 1)',
+              'rgba(60, 23, 10, 1)',
+              'rgba(200, 0, 10, 1)',
+              'rgba(32, 0, 12, 1)',
               'rgba(21, 0, 102, 1)',
-              'rgba(51, 51, 204, 1)',
+              'rgba(51, 51, 204, 1)'
             ],
             hoverBorderColor: 'rgba(200, 200, 200, 1)',
             data: count
@@ -36,12 +45,12 @@ $(document).ready(function(){
         ]
       };
 
-      var ctx = $("#ISchartQuestion2");
+      var ctx = $("#ISchartQuestion4");
       var options = {
         title: {
           display: true,
           position: "top",
-          text: "Employement Status of IS Graduate",
+          text: "BSIS on How They Land on Thier First Job",
           fontSize: 20,
           fontColor: "#222"
         },
@@ -59,7 +68,7 @@ $(document).ready(function(){
           position: "top"
         },
         scales: {
-        yAxes: [{
+        xAxes: [{
             display: true,
             ticks: {
                 suggestedMin: 0,
@@ -67,12 +76,11 @@ $(document).ready(function(){
             }
         }]
         }
-
       };
 
 
       var barGraph = new Chart(ctx, {
-        type: 'bar',
+        type: 'horizontalBar',
         data: chartdata,
         showDatapoints: true,
         options : options
