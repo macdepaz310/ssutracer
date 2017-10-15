@@ -2,7 +2,7 @@
 session_start();
 
 if( isset($_SESSION['currentUser']) ){
-  header('Location: indexhomepage.php');
+  header('Location: index.php');
 }
   require 'DBconnect/database.php';
 
@@ -11,7 +11,7 @@ if( isset($_SESSION['currentUser']) ){
   if(!empty($_POST['batch']) && !empty($_POST['course']) && !empty($_POST['first_n']) && !empty($_POST['middle_i']) && !empty($_POST['last_n']) && !empty($_POST['gender']) && !empty($_POST['bd']) && !empty($_POST['civil']) && !empty($_POST['address']) && !empty($_POST['contact']) && !empty($_POST['email']) && !empty($_POST['pwd'])):
 
     if($_POST['pwd'] != $_POST['repwd']){
-      header("Location: login.html");
+      header("Location: index.php");
       die('Failed');
     }
 

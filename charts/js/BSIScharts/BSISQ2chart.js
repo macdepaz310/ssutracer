@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/charts/api/BSISdata/surveyQ2Data.php",
+    url: "http://192.168.1.115/ssutracer/charts/api/BSISdata/surveyQ2Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -58,6 +58,7 @@ $(document).ready(function(){
           display: true,
           position: "top"
         },
+        // maintainAspectRatio: false,
         scales: {
         yAxes: [{
             display: true,

@@ -114,13 +114,13 @@
 
       <input type="submit" name="submit" value="NEXT"> -->
 
-    </form>
+    <!-- </form> -->
     <?php if (!empty($user)): ?>
     <br>WELCOME <?= $user['email_address']; ?>
     <br> You Logged In! <br>
     <a href="../logout.php">logout?</a>
   <?php else: echo "YOU MUST LOG IN TO VISIT THE PAGE, REDIRECTING IN A MOMENT";
-         header('Refresh: 3; url=../index.php');?>
+         header('Refresh: 0.1; url=../index.php');?>
     please  log in or register <br>
     <a href="login.php">log in</a> or
     <a href="register.php">Reg</a>

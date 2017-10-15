@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/ssutracer/charts/api/BSISdata/surveyQ3Data.php",
+    url: "http://192.168.1.115/ssutracer/charts/api/BSISdata/surveyQ3Data.php",
     method: "GET",
     success: function(data){
       console.log(data);

@@ -39,7 +39,7 @@
 <?php
 //all the records in the question table
 echo "<table style='border: solid 1px black;'>";
- echo "<tr><th>QID</th><th>SurveyQuestion</th></tr>";
+ echo "<tr><th>QID</th><th>SurveyQuestion</th><th>Possible Answer</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator {
     function __construct($it) {

@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.254/charts/api/BSISdata/surveyQ1Data.php",
+    url: "http://192.168.1.115/ssutracer/charts/api/BSISdata/surveyQ1Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -48,6 +48,7 @@ $(document).ready(function(){
           fontColor: "#111"
         },
         responsive: true,
+        // maintainAspectRatio: false,
         legend: {
           display: true,
           position: "top"
