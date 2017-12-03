@@ -54,7 +54,7 @@ if( isset($_SESSION['currentUser']) ){
 <h5><?php if(!empty($message)): ?></h5>
   <p><?= $message ?></p>
 <?php endif; ?>
-  <!-- <form class="" action="register.php" method="post">
+  <form class="" action="register.php" method="post">
     <ul>
     <li>
     <select class="" name="batch" required>
@@ -90,11 +90,27 @@ if( isset($_SESSION['currentUser']) ){
     <li><input type="text" name="address" placeholder="Address" required></li>
     <li><input type="number" name="contact" placeholder="Contact Number" required></li>
     <li><input type="email" name="email" placeholder="Email address" required></li>
-    <li><input type="password" name="pwd" placeholder="Password" required></li>
-    <li><input type="password" name="repwd" placeholder="Verify Password" required></li>
+    <li><input id="password" type="password" name="pwd" placeholder="Password" minlength="8" maxlength="20" required></li>
+    <li><input id="confirm_password" type="password" name="repwd" placeholder="Verify Password" minlength="8" maxlength="20" required></li>
 
     <li><input type="submit" name="" value="submit"></li>
   </ul>
-  </form> -->
+  </form>
+
+  <script>
+  var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+  </script>
   </body>
 </html>

@@ -5,7 +5,7 @@ session_start();
 
       if ( isset($_SESSION['currentUser'])){
 
-        $records = $conn->prepare('SELECT respondentID, email_address, password FROM personalinfo_tbl WHERE email_address = :id');
+        $records = $conn->prepare("SELECT respondentID, email_address, CONCAT(first_name,' ',middle_initial,'. ',last_name) AS Fullname, course, yearBatch, gender, civil_status, birthdate, address, password FROM personalinfo_tbl WHERE email_address = :id");
         $records->bindParam(':id', $_SESSION['currentUser']);
         $records->execute();
         $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -21,6 +21,7 @@ session_start();
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Employment Tracer: Question</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -37,11 +38,11 @@ session_start();
   .font-white {color: #f2f2f4}
   .margin {padding-top: 30px;}
   .bg-white {background-color: white;}
+  footer {background-color:#00133f;}
   </style>
   <body>
     <div class="page-header text-center bgcolor">
-        <h2>Information System and Information Technology Tracer System</h2>
-        <p>Batch 2013-2017</p>
+      <h2>Web-Based SSU Employment Tracer For 2013-2017 BSIS And BSIT Graduates</h2>
     </div>
 
     <nav class="navbar-primary navcolor ">
@@ -52,7 +53,7 @@ session_start();
         <ul class="nav navbar-nav">
           <li><a href="" class="font-white" data-toggle="modal" data-target="#login">Home</a></li>
           <li style="background-color:#f2f2f4;"><a href="#" data-toggle="modal" data-target="#login">Take a Survey</a></li>
-          <li><a href="blog.html" class="font-white" data-toggle="modal" data-target="#login">Post Blog</a></li>
+          <li><a href="blog.php" class="font-white" data-toggle="modal" data-target="#login">Post Blog</a></li>
           <li class="droppdown"><a class="dropdown-toggle font-white" data-toggle="dropdown" href="#">Chart <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="infosystemchart.html" class="font-white" class="font-white" data-toggle="modal" data-target="#login">BS Information System</a></li>
@@ -67,7 +68,7 @@ session_start();
         </ul>
     </div>
   </nav>
-  <div class="container-fluid">
+  <div class="container">
   <div class="row">
   <div class="col-sm-3  margin">
   <div class="col-sm-12">
@@ -78,20 +79,24 @@ session_start();
       <?php if (!empty($user)): ?>
       <br>WELCOME <?= $user['email_address']; ?>
     </p>
-  <?php else: echo "YOU MUST LOG IN TO VISIT THE PAGE, REDIRECTING IN A MOMENT";
-         header('Refresh: ; url=index.php');?>
-           <?php endif; ?>
-  </div>
-    <div class="col-sm-12">
-      <div class="">
-          <p class="text-uppercase  ">Student Information</p>
-          <p>Age</p><br>
-          <p>Gender</p><br>
-          <p>Status</p><br>
-          <p>Address</p><br>
-          <p>Job Position</p><br>
-        </div>
+</div>
+<div class="col-sm-12">
+  <div class="">
+
+      <p class="text-uppercase  ">Student Information</p>
+      <p>Name: <?= $user['Fullname'] ?></p><br>
+      <p>Course: <?= $user['course'] ?></p><br>
+      <p>Batch: <?= $user['yearBatch'] ?></p><br>
+      <p>Gender: <?= $user['gender'] ?></p><br>
+      <p>Civil Status: <?= $user['civil_status'] ?></p><br>
+      <p>Birthday: <?= $user['birthdate'] ?></p><br>
+      <p>Address: <?= $user['address'] ?></p><br>
+      <br>
+    <?php else: echo "YOU MUST LOG IN TO VISIT THE PAGE, REDIRECTING IN A MOMENT";
+    header('Refresh: 0.1; url=index.php');?>
+  <?php endif; ?>
     </div>
+</div>
 </div>
 <div class="col-sm-9" style="background-color: #f2f2f4;">
   <div class="">
@@ -187,13 +192,13 @@ session_start();
       endif;
     endif;
     ?>
-    <!DOCTYPE html>
+    <!-- <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
         <title>Survey Page</title>
       </head>
-      <body>
+      <body> -->
         <form class="form-horizontal" action="surveyQ5.php" method="post">
           <div class="radio">
             <label for=""><input type="radio" name="ans" value="1-5mos" required>1-5months</label>
@@ -234,18 +239,44 @@ session_start();
           </div>
       </div>
   </div>
+  </div>
 <footer>
-  <p>F</p>
-  <p>O</p>
-  <p>0</p>
-  <p>T</p>
-  <p>E</p>
-  <p>R</p>
-  <br>
-  <p>H</p>
-  <p>E</p>
-  <p>R</p>
-  <p>E</p>
+  <div class="container-fluid">
+    <nav class="navbar margin">
+  <div class="container">
+      <div class="col-sm-3">
+        <ul class="nav ">
+          <li class="active"><a href="#"><h2>Tracer Program</h2></a></li>
+        </ul>
+      </div>
+      <div class="container">
+          <div class="col-sm-3">
+            <ul class="nav ">
+              <li><a href="../underconstruction.html">About</a></li>
+              <li><a href="../underconstruction.html">Facts</a></li>
+              <li><a href="../underconstruction.html">Help</a></li>
+              <li><a href="../underconstruction.html">Contact Us</a></li>
+            </ul>
+          </div>
+              <div class="col-sm-3">
+                <ul class="nav ">
+                  <li><a href="../underconstruction.html">About</a></li>
+                  <li><a href="../underconstruction.html">Facts</a></li>
+                  <li><a href="../underconstruction.html">Help</a></li>
+                  <li><a href="../underconstruction.html">Contact Us</a></li>
+                </ul>
+              </div>
+                  <div class="col-sm-3">
+                    <ul class="nav ">
+                      <li><a href="../underconstruction.html">About</a></li>
+                      <li><a href="../underconstruction.html">Facts</a></li>
+                      <li><a href="../underconstruction.html">Help</a></li>
+                      <li><a href="../underconstruction.html">Contact Us</a></li>
+                    </ul>
+                  </div>
+  </div>
+  </nav>
+  </div>
 </footer>
   </body>
 </html>

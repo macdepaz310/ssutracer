@@ -29,7 +29,7 @@ endif;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Employment Tracer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -41,7 +41,7 @@ endif;
 .nav-tabs {width: 100%;}
 .modal-header, h4, .close {background-color: black;color:white !important;text-align: center;font-size: 30px;}
  .modal-footer, .page-header {background-color: #f9f9f9;}
- .margin {margin: 0;padding: 0;}
+ .margin {margin-top: 30px;padding: 0;}
  header {background-color: white;}
  img.center {display: block;margin-left: auto;margin-right: auto;}
  .navcolor {background-color: #368cbf;border-bottom: 0px solid #f0ea62;}
@@ -55,6 +55,7 @@ endif;
    div.page-header {font-size: 10px;}
    div.center-image-text {position: absolute;top: 15%;left: 30%;right: 0%;}
  }
+ div.page-header div.text-center h1.font-white {text-shadow: 20px 50px 50px black, 20px 20px 20px black;}
  .center-image-text {position: absolute;top: 30%;left: 30%;right: 0%;}
  /*div.page-header {background-image: url("pic/system.jpg");background-repeat: no-repeat;width: 100%;height: 400px;background-size: 100%;}*/
  ul li:hover {display: inherent;}
@@ -79,7 +80,7 @@ footer {background-color:#00133f;}
 </div>
 </li>
       <div class="navbar-header">
-        <a href="#" class="navbar-brand"><img src="pic/logoname.png" class="img-responsive" alt="" width="250" /></a>
+        <a href="index.php" class="navbar-brand"><img src="pic/logoname.png" class="img-responsive" alt="" width="250" /></a>
       </div>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" class="font-white" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -127,7 +128,7 @@ footer {background-color:#00133f;}
                                               <div class="form-group">
                                                   <label for="email" class="col-sm-2 control-label">Email</label>
                                                   <div class="col-sm-10">
-                                                      <input type="email" name="email" class="form-control" placeholder="example@gmail.com" required autofocus>
+                                                      <input type="email" name="email" class="form-control" placeholder="example@gmail.com"  autofocus required>
                                                         </div>
                                                           </div>
                                                             <div class="form-group">
@@ -296,7 +297,7 @@ footer {background-color:#00133f;}
 
 <div class="page-header">
       <div class="col-sm-8 center-image-text text-center">
-          <h1 class="text-center font-white">Web-Based <a href="#IS" style="color:red">Information System</a> and <br><a href="#IT" style="color:blue;">Information Technology</a> Tracer System</h1>
+          <h1 class="text-center font-white text-shadow"><hr>Web-Base SSU Employment Tracer <br> For 2013-2017 <br><a href="#IS" style="color:red">BSIS</a> and <a href="#IT" style="color:blue;">BSIT</a> Graduates </h1><hr>
     </div>
         <div class="">
       <img src="pic/th.png" class="img-responsive" alt="" width="100%" />
@@ -304,7 +305,7 @@ footer {background-color:#00133f;}
 
 </div>
 <div class="container">
-    <div class="col-sm-12">
+    <!-- <div class="col-sm-12">
         <div class="row">
               <div class="col-sm-3">
                 <div class="thumbnail">
@@ -326,7 +327,7 @@ footer {background-color:#00133f;}
                 </div>
                 </div>
               </div>
-    </div>
+    </div> -->
   </div>
 
 <!-- ***************************************************************************************************************************** -->
@@ -339,12 +340,11 @@ footer {background-color:#00133f;}
     <div class="col-sm-6">
       <h3 id="IS">Information System</h3>
       <a href="#">
-          <img src="pic/it.jpg" alt="" class="img-responsive center" width="500" /></a>
-            <p style="text-align:center;font-family:verdana;">Business Analyst</p>
+          <img src="pic/is2.jpg" alt="" class="img-responsive center" width="500" /></a>
+            <p style="text-align:center;font-family:verdana;">Business Management</p>
     </div>
-    <div class="col-sm-6 chart-container-fluid">
+    <div class="col-sm-6 chart-container-fluid margin">
         <canvas id="ISchartQuestion5"></canvas>
-
       </div>
   </div>
   </div>
@@ -359,10 +359,10 @@ footer {background-color:#00133f;}
         <div class="col-sm-6">
           <h3 id="IT">Information technology</h3>
           <a href="#">
-              <img src="pic/is.jpg" alt="" class="img-responsive center" width="500" /></a>
-                      <p style="text-align:center;font-family:verdana;">Database Administrator</p>
+              <img src="pic/it2.jpg" alt="" class="img-responsive center" width="500" /></a>
+                      <p style="text-align:center;font-family:verdana;">Networking</p>
         </div>
-        <div class="col-sm-6 chart-container-fluid">
+        <div class="col-sm-6 chart-container-fluid margin">
           <canvas id="ITchartQuestion5"></canvas>
         </div>
       </div>
@@ -399,7 +399,7 @@ footer {background-color:#00133f;}
 
 <footer>
   <div class="container-fluid">
-    <nav class="navbar">
+    <nav class="navbar margin">
   <div class="container">
       <div class="col-sm-3">
         <ul class="nav ">
@@ -409,26 +409,26 @@ footer {background-color:#00133f;}
       <div class="container">
           <div class="col-sm-3">
             <ul class="nav ">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Facts</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><a href="underconstruction.html">About</a></li>
+              <li><a href="underconstruction.html">Facts</a></li>
+              <li><a href="underconstruction.html">Help</a></li>
+              <li><a href="underconstruction.html">Contact Us</a></li>
             </ul>
           </div>
               <div class="col-sm-3">
                 <ul class="nav ">
-                  <li><a href="#">Account</a></li>
-                  <li><a href="#">Policy</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Security</a></li>
+                  <li><a href="underconstruction.html">About</a></li>
+                  <li><a href="underconstruction.html">Facts</a></li>
+                  <li><a href="underconstruction.html">Help</a></li>
+                  <li><a href="underconstruction.html">Contact Us</a></li>
                 </ul>
               </div>
                   <div class="col-sm-3">
                     <ul class="nav ">
-                      <li><a href="#">Question</a></li>
-                      <li><a href="#">Recommendation</a></li>
-                      <li><a href="#">Blog</a></li>
-                      <li><a href="#">Log Out</a></li>
+                      <li><a href="underconstruction.html">About</a></li>
+                      <li><a href="underconstruction.html">Facts</a></li>
+                      <li><a href="underconstruction.html">Help</a></li>
+                      <li><a href="underconstruction.html">Contact Us</a></li>
                     </ul>
                   </div>
   </div>
