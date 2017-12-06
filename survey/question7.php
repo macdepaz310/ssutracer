@@ -61,7 +61,7 @@ echo "</table>";
 $server ='localhost';
 $username = 'root';
 $password = '';
-$database = 'ssutracer';
+$database = 'u226789853_trcr';
 
 try{
     $con = new PDO("mysql:host=$server;dbname=$database;", $username, $password);

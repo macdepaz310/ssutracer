@@ -14,12 +14,11 @@ session_start();
 
    if( count($results) > 0) {
      $user = $results;
-   }
+     $rid = $user['email_address'];
+       }
  }
 $msg = '';
-
  ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,10 +31,35 @@ $msg = '';
   </head>
   <body>
     <h1>My Profile</h1>
+    <?php
+      include_once 'DBconnect/databaseMysqli.php';
+
+      $sql = "SELECT * from personalinfo_tbl where email_address='$rid'";
+      $res = mysqli_query($db, $sql);
+      if (mysqli_num_rows($res) > 0){
+        while ($row = mysqli_fetch_assoc($res) ) {
+          $id = $row['email_address'];
+          $sqlImg = "SELECT * FROM personalinfo_tbl WHERE email_address = '$id'";
+          $resImg = mysqli_query($db, $sqlImg);
+          while ($rowImg = mysqli_fetch_assoc($resImg)) {
+            echo "<div>"; //profileImage
+              if ($rowImg['image_status'] == 0) {
+                echo "<img src='uploads/profile".$id.".jpg?'".mt_rand()." style='height:150px; width:150px'>";
+              }else {
+                echo "<img src='uploads/defaultprofile.png'>";
+              }
+            echo "</div>";
+          }
+
+        }
+      }else {
+        echo "there are no users yet!";
+      }
+     ?>
     <!-- add/upload profile image -->
       <form action="upload.php" method="post" enctype="multipart/form-data">
        Select image to upload:
-       <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png"/>
+       <input type="file" id="image" name="image" accept=".jpg"/>
        <input type="submit" name="submit" id="submit" value="UPLOAD"/>
      </form>
     <?php if (!empty($user)): ?>
@@ -45,7 +69,6 @@ $msg = '';
 <div class="col-sm-12">
 <div class="">
   <p class="text-uppercase  "></p>
-  <img src="source.php?id=1" width="300" height="300" />
   <p>Name: <?= $user['Fullname'] ?></p><br>
   <p>Course: <?= $user['course'] ?></p><br>
   <p>Batch: <?= $user['yearBatch'] ?></p><br>
@@ -68,7 +91,7 @@ $(document).ready(function(){
       }
       else {
         var extension = $('image').val().split('.').pop().toLowerCase();
-        if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+        if(jQuery.inArray(extension, ['jpg',]) == -1)
         {
           alert('Invalid Image File');
           $('#image').val('');

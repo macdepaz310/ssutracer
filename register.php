@@ -15,7 +15,7 @@ if( isset($_SESSION['currentUser']) ){
       die('Failed');
     }
 
-    $sql = "INSERT INTO personalinfo_tbl (yearBatch, first_name, middle_initial, last_name, gender, birthdate, civil_status, course, address, contact_number, email_address, password) VALUES (:batch, :first_n,:middle_i,:last_n,:gender,:bd,:civil,:course,:address,:contact,:email,:pwd)";
+    $sql = "INSERT INTO personalinfo_tbl (yearBatch, first_name, middle_initial, last_name, gender, birthdate, civil_status, course, address, contact_number, email_address, password, image_status) VALUES (:batch, :first_n,:middle_i,:last_n,:gender,:bd,:civil,:course,:address,:contact,:email,:pwd, 1)";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':batch', $_POST['batch']);
@@ -33,7 +33,7 @@ if( isset($_SESSION['currentUser']) ){
 
     if($stmt->execute() ):
       $message = 'Successfully Created New User';
-      header('Refresh: 1; url=index.php');
+      // header('Refresh: 1; url=index.php');
     else:
         $message = 'sorry';
 
