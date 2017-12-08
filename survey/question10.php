@@ -92,7 +92,7 @@ if(isset($_POST['submit'])):
   $stmt->bindParam(':rid', $rid);
   $stmt->bindParam(':answerText', $_POST['ans']);
   if($stmt->execute() ):
-    header('Refresh: 0.2; url= ../survey/question11.php');
+    header('Refresh: 0.2; url= ../survey/question19.php');
   else:
     echo "sorry";
   endif;

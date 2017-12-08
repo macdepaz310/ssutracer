@@ -42,7 +42,7 @@ class TableRows extends RecursiveIteratorIterator {
 try {
 
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   $stmt = $conn->prepare("SELECT questionText FROM question_tbl where questionID=17");
+   $stmt = $conn->prepare("SELECT questionText FROM question_tbl where questionID=19");
    $stmt->execute();
 
    // set the resulting array to associative
@@ -83,7 +83,7 @@ if ( isset($_SESSION['currentUser'])){
     $rid = $user['respondentID'];
    }
   }
-$QID = 17; //question number base from database
+$QID = 19; //question number base from database
 
 if(isset($_POST['submit'])):
   $sql = "INSERT INTO answer_tbl (question_ID, respondent_ID, answerText) VALUES (:QID, :rid, :answerText)";
@@ -91,10 +91,8 @@ if(isset($_POST['submit'])):
   $stmt->bindParam(':QID', $QID);
   $stmt->bindParam(':rid', $rid);
   $stmt->bindParam(':answerText', $_POST['ans']);
-  if($stmt->execute() && $_POST['ans']=='Yes' ):
-    header('Refresh:0.2; url= ../survey/question18.php');
-  elseif($stmt->execute() && $_POST['ans']=='No' ):
-    header('Refresh:0.2; url= ../feedback.php');
+  if($stmt->execute() ):
+    header('Refresh: 0.2; url= ../survey/question11.php');
   else:
     echo "sorry";
   endif;
@@ -107,9 +105,9 @@ endif;
     <title>Survey Page</title>
   </head>
   <body>
-    <form class="" action="question17.php" method="post">
-      <input type="radio" name="ans" value="Yes" required>Yes <br>
-      <input type="radio" name="ans" value="No" required>No <br>
+    <form class="" action="question19.php" method="post">
+      (Ex. Samar State University, Arteche Blvd., Guindapunan Catbalogan City, Samar) <br>
+      <input type="text" name="ans" required> <br>
       <input type="submit" name="submit" value="NEXT">
 
     </form>

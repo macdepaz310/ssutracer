@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $.ajax({
-    url: "http://192.168.1.115/ssutracer/charts/api/BSISdata/surveyQ1Data.php",
+    url: "http://localhost/ssutracer/charts/api/BSISdata/surveyQ1Data.php",
     method: "GET",
     success: function(data){
       console.log(data);
@@ -8,7 +8,7 @@ $(document).ready(function(){
       var count = [];
 
       for(var i in data){
-        answertext.push("Answer " + data[i].answertext);
+        answertext.push(data[i].answertext);
         count.push(data[i].count);
       }
       var chartdata = {

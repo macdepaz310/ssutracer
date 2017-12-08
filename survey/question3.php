@@ -92,7 +92,7 @@ if(isset($_POST['submit'])):
   $stmt->bindParam(':rid', $rid);
   $stmt->bindParam(':answerText', $_POST['ans']);
   if($stmt->execute() ):
-    header('Refresh:0.2; url= ../survey/question4.php');
+    header('Refresh:0.2; url= ../survey/question17.php');
   else:
     echo "sorry";
   endif;
@@ -106,10 +106,10 @@ endif;
   </head>
   <body>
     <form class="" action="question3.php" method="post">
-      <input type="radio" name="ans" value="<8k" required>8,000 below<br>
-      <input type="radio" name="ans" value="8k-15k" required>8,000-15,000<br>
-      <input type="radio" name="ans" value="15k-25k" required>15,000-25,000<br>
-      <input type="radio" name="ans" value=">25k" required>25,000 above<br>
+      <input type="radio" name="ans" value="8,000 below" required>8,000 below<br>
+      <input type="radio" name="ans" value="8,000-15,000" required>8,000-15,000<br>
+      <input type="radio" name="ans" value="15,000-25,000" required>15,000-25,000<br>
+      <input type="radio" name="ans" value="25,000 above" required>25,000 above<br>
       <input type="submit" name="submit" value="NEXT">
 
     </form>

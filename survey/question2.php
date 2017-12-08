@@ -91,8 +91,10 @@ if(isset($_POST['submit'])):
   $stmt->bindParam(':QID', $QID);
   $stmt->bindParam(':rid', $rid);
   $stmt->bindParam(':answerText', $_POST['ans']);
-  if($stmt->execute() ):
-    header('Refresh:0.2; url= ../survey/question3.php');
+  if($stmt->execute() && $_POST['ans']=='Self-Employed' ):
+    header('Refresh:0.2; url= ../survey/question9.php');
+  elseif($stmt->execute() ):
+        header('Refresh:0.2; url= ../survey/question10.php');
   else:
     echo "sorry";
   endif;

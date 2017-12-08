@@ -87,18 +87,18 @@ $QID = 1; //question number base from database
 
 if(isset($_POST['submit'])):
   $sql = "INSERT INTO answer_tbl (question_ID, respondent_ID, answerText) VALUES (:QID, :rid, :answerText)";
+  $answer = $_POST['ans'];
   $stmt = $con->prepare($sql);
   $stmt->bindParam(':QID', $QID);
   $stmt->bindParam(':rid', $rid);
-  $stmt->bindParam(':answerText', $_POST['ans']);
-  if($stmt->execute() && $_POST['ans']=='yes' ):
-    header('Refresh:0.2; url= ../survey/question2.php');
-  elseif($stmt->execute() && $_POST['ans']=='no' ):
-      header('Refresh:0.2; url= ../survey/endsurvey.php');
+  $stmt->bindParam(':answerText', $answer);
+  if($stmt->execute()):
+      header('Refresh: 30; url= ../survey/question2.php');
   else:
     echo "sorry";
   endif;
 endif;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -108,8 +108,8 @@ endif;
   </head>
   <body>
     <form class="" action="question1.php" method="post">
-      Yes<input type="radio" name="ans" value="yes">
-      No<input type="radio" name="ans" value="no">
+      Yes<input type="radio" name="ans" value="yes" required>
+      No<input type="radio" name="ans" value="no" required>
       <input type="submit" name="submit" value="NEXT">
 
     </form>

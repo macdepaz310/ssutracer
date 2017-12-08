@@ -91,7 +91,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
@@ -103,7 +103,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans1'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans1']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
@@ -115,7 +115,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans2'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans2']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
@@ -127,7 +127,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans3'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans3']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
@@ -139,7 +139,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans4'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans4']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
@@ -151,7 +151,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans5'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans5']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
@@ -163,7 +163,7 @@ if(isset($_POST['submit']) && !empty($_POST['ans6'])):
     $stmt->bindParam(':rid', $rid);
     $stmt->bindParam(':answerText', $_POST['ans6']);
   if($stmt->execute() ):
-     header('Refresh: 5; url= ../survey/question9.php');
+     header('Refresh: 0.5; url= ../feedback.php');
   else:
     echo "sorry";
   endif;
