@@ -25,15 +25,17 @@ $(document).ready(function(){
       }
       console.log(count);
 
-      var ctx = $("#overallChart");
+      var ctx = $("#overallChart1");
       var data = {
         labels : ["Yes", "No"],
         datasets : [
           {
-            label : ['Regular'],
+            label : ['Result'],
             data : [count.Yes, count.No],
-            backgroundColor : ["blue", "red"],
-            borderColor : ["lightblue", "lightred"],
+            backgroundColor : ['rgba(26, 26, 255, 0.7)',  'rgba(255, 26, 26, 0.7)'],
+            borderColor : ["rgba(26, 26, 255, 1)", "rgba(255, 26, 26, 1)"],
+            hoverBackgroundColor : ["rgba(26, 26, 255, 1)", "rgba(255, 26, 26, 1)"],
+
             fill: "true"
           }
         ]

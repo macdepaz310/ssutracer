@@ -16,7 +16,7 @@ if(!$conn){
 }
 
 //query to get data from table
-$sql = sprintf("SELECT answertext, count(answer_tbl.answerID) as count from answer_tbl, personalinfo_tbl where answer_tbl.question_id=12 && personalinfo_tbl.respondentID=answer_tbl.respondent_ID GROUP BY answer_tbl.answerText");
+$sql = sprintf("SELECT answertext, count(answer_tbl.answerID) as count from answer_tbl, personalinfo_tbl where answer_tbl.question_id=8 && personalinfo_tbl.respondentID=answer_tbl.respondent_ID GROUP BY answer_tbl.answerText");
 
 //exec SQL
 $result = $conn->query($sql);
